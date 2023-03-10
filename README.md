@@ -1,7 +1,7 @@
 Columnize
 =========
 
-Easy column-formatted output for golang. Now with color
+Easy column-formatted output for golang. Now with color.
 
 Forked from github.com/CiscoCloud/columnize which was forked from github.com/ryanuber/columnize
 
@@ -79,6 +79,7 @@ have text formatted to your liking.
 
 Usage
 =====
+
 ```go
 SimpleFormat(intput []string) string
 
@@ -87,17 +88,18 @@ Format(input []string, config *Config) string
 
 Colorizing Fields
 =================
+
 Header and body fields can have a specific cell color. See github.com/TwiN/go-color for more info.
 
 ```go
-config.HeaderColors = &[]func(s any) string {color.InRed, color.InGreen}
-config.BodyColors = &[]func(s any) string {color.InRed, color.InGreen}
+config.HeaderColors = &ColorList{color.InRed, color.InGreen}
+config.BodyColors = &ColorList{color.InRed, color.InGreen}
 
 ```
 
-
 Controlling Output Width
 ========================
+
 Output exceeding the width of the terminal window - particularly columnized output - can be difficult to read.  To address this, Columnize provides two configuration parameters for controlling output width.
 
 * `MaxWidth` is an int slice specifying the maximum width of each column.  If the data for a column exceeds its maximum width, Columnize formats the column into two or more lines by breaking its data at a word boundary and continuing it onto the next line.  A zero or missing value for a MaxWidth element specifies that the corresponding column is uncontrolled (no maximum width).
@@ -135,7 +137,4 @@ Specify OutputWidth to restrict the entire output line.  For example, the config
     }
 
 causes the entire output line to fit in the terminal window.  Columnize modifies data lines exceeding the width of the window by setting the appropriate MaxWidth for the last column  of data.  Columnize adjusts the last uncontrolled column, so if you want it to adjust a column other than the last, specify an explicit MaxWidth for any columns to the right of the one you want Columnize to adjust.
-
-
-
 

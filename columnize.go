@@ -8,6 +8,9 @@ import (
 	"github.com/DeMille/termsize"
 )
 
+// Cellcolor slice
+type ColorList []func(s any) string
+
 type Config struct {
 	// The string by which the lines of input will be split.
 	Delim string
@@ -31,11 +34,10 @@ type Config struct {
   // Function to call that returns colored output
   // Check out github.com/TwiN/go-color color.In[Color]() functions
   // Pointer incase user never sets it
-  HeaderColors *[]func(s any) string 
+  HeaderColors *ColorList 
 
   // Body colors
-  BodyColors *[]func(s any) string 
-
+  BodyColors *ColorList 
 }
 
 const (
@@ -208,7 +210,7 @@ func Format(lines []string, config *Config) string {
 		for isStillDataToFormat {
  
       // get the right pallet up
-      var colorsToUse *[]func(s any) string
+      var colorsToUse *ColorList
       if i == 0 { colorsToUse = config.HeaderColors } else { colorsToUse = config.BodyColors }
 
       // each elem needs its color updated
