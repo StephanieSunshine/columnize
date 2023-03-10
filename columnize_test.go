@@ -2,6 +2,7 @@ package columnize
 
 import (
 	"fmt"
+	"github.com/TwiN/go-color"
 	"math"
 	"strings"
 	"testing"
@@ -333,4 +334,33 @@ func TestGetConsoleWidth(t *testing.T) {
 	}
 	output := Format(input, &config)
 	fmt.Printf("%s\n", output)
+}
+
+func TestColors(t *testing.T) {
+	input := []string{
+		"Column A | Column B | Column C",
+		"x | y | z",
+	}
+
+	config := DefaultConfig()
+	config.HeaderColors = &ColorList{color.InRed, color.InGreen, color.InBlue}
+	config.BodyColors = &ColorList{color.InYellow, color.InWhite, color.InPurple}
+
+	fmt.Println(Format(input, config))
+
+}
+
+func TestColorsWrap(t *testing.T) {
+	input := []string{
+		"Column A | Column B | Column C",
+		"This is column A data | This is column B data | This is column C data that should wrap if the terminal width is too small for it",
+	}
+
+	config := DefaultConfig()
+	config.OutputWidth = AUTO
+	config.HeaderColors = &ColorList{color.InRed, color.InGreen, color.InBlue}
+	config.BodyColors = &ColorList{color.InYellow, color.InWhite, color.InPurple}
+
+	fmt.Println(Format(input, config))
+
 }
