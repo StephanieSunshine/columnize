@@ -208,10 +208,12 @@ func Format(lines []string, config *Config) string {
 		extensionLineElems := []string{}
 		isStillDataToFormat := true
 		for isStillDataToFormat {
- 
       // get the right pallet up
       var colorsToUse *ColorList
-      if i == 0 { colorsToUse = config.HeaderColors } else { colorsToUse = config.BodyColors }
+ 
+      if config != nil {
+        if i == 0 { colorsToUse = config.HeaderColors } else { colorsToUse = config.BodyColors }
+      }
 
       // each elem needs its color updated
 
