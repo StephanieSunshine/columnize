@@ -1,7 +1,9 @@
 Columnize
 =========
 
-Easy column-formatted output for golang
+Easy column-formatted output for golang. Now with color
+
+Forked from github.com/CiscoCloud/columnize which was forked from github.com/ryanuber/columnize
 
 [![Build Status](https://travis-ci.org/ryanuber/columnize.svg)](https://travis-ci.org/ryanuber/columnize)
 
@@ -17,7 +19,7 @@ package main
 
 import (
     "fmt"
-    "github.com/CiscoCloud/columnize"
+    "github.com/StephanieSunshine/columnize"
 )
 
 func main() {
@@ -57,6 +59,8 @@ config.Prefix = ""
 config.Empty = ""
 config.MaxWidth = []int{10, 0, 0}
 config.OutputWidth = 80
+config.HeaderColors = nil
+config.BodyColors = nil
 ```
 
 * `Delim` is the string by which columns of **input** are delimited
@@ -65,20 +69,32 @@ config.OutputWidth = 80
 * `Empty` is a string used to replace blank values found in output
 * `MaxWidth` is an int slice specifying the maximum width of each column.
 * `OutputWidth` is an int specifying the maximum width of an output line.
+* `HeaderColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See github.com/TwiN/go-color for more info.
+* `BodyColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See github.com/TwiN/go-color for more info.
 
-If MaxWidth or OutputWidth is specified and output exceeds the configured width, Columnize breaks a column at a word boundary and continues it on the next line.  See below for details.
+If MaxWidth or OutputWidth is specified and output exceeds the configured width, Columnize breaks a column at a word boundary and continues it on the next line. See below for details.
 
 You can then pass the `Config` in using the `Format` method (signature below) to
 have text formatted to your liking.
 
 Usage
 =====
-
 ```go
 SimpleFormat(intput []string) string
 
 Format(input []string, config *Config) string
 ```
+
+Colorizing Fields
+=================
+Header and body fields can have a specific cell color. See github.com/TwiN/go-color for more info.
+
+```go
+config.HeaderColors = &[]func(s any) string {color.InRed, color.InGreen}
+config.BodyColors = &[]func(s any) string {color.InRed, color.InGreen}
+
+```
+
 
 Controlling Output Width
 ========================

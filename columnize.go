@@ -202,14 +202,28 @@ func Format(lines []string, config *Config) string {
 
 	// Create the formatted output using the format string
 	for i, line := range lines {
-    fmt.Println("Printing line:", i, line)
-
 		elems := getElementsFromLine(conf, line)
 		extensionLineElems := []string{}
 		isStillDataToFormat := true
 		for isStillDataToFormat {
+ 
+      // get the right pallet up
+      var colorsToUse *[]func(s any) string
+      if i == 0 { colorsToUse = config.HeaderColors } else { colorsToUse = config.BodyColors }
+
+      // each elem needs its color updated
+
 			isStillDataToFormat = truncateToWidth(&elems, &extensionLineElems, widths)
 			stringfmt := conf.getStringFormat(widths, len(elems))
+
+      if colorsToUse != nil {
+        for i, v := range elems {
+          if len((*colorsToUse)) > i {
+            elems[i] = (*colorsToUse)[i](v)
+          }
+        }
+      }
+
 			result += fmt.Sprintf(stringfmt, elems...)
 		}
 	}
