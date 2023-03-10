@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
-
+  // "github.com/TwiN/go-color"
 	"github.com/DeMille/termsize"
 )
 
@@ -26,6 +26,16 @@ type Config struct {
 
 	// Maximum width of each column
 	MaxWidth []int
+
+  // Header colors
+  // Function to call that returns colored output
+  // Check out github.com/TwiN/go-color color.In[Color]() functions
+  // Pointer incase user never sets it
+  HeaderColors *[]func(s any) string 
+
+  // Body colors
+  BodyColors *[]func(s any) string 
+
 }
 
 const (
@@ -35,11 +45,13 @@ const (
 // Returns a Config with default values.
 func DefaultConfig() *Config {
 	return &Config{
-		Delim:       "|",
-		Glue:        "  ",
-		Prefix:      "",
-		OutputWidth: -999,
-		MaxWidth:    []int{},
+		Delim:        "|",
+		Glue:         "  ",
+		Prefix:       "",
+		OutputWidth:  -999,
+		MaxWidth:     []int{},
+    HeaderColors: nil,
+    BodyColors:   nil,
 	}
 }
 
@@ -189,7 +201,9 @@ func Format(lines []string, config *Config) string {
 	widths := getWidthsFromLines(conf, lines)
 
 	// Create the formatted output using the format string
-	for _, line := range lines {
+	for i, line := range lines {
+    fmt.Println("Printing line:", i, line)
+
 		elems := getElementsFromLine(conf, line)
 		extensionLineElems := []string{}
 		isStillDataToFormat := true

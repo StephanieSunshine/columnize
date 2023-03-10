@@ -1,0 +1,4 @@
+github.com/DeMille/termsize v0.0.0-20150408082641-b7100f0f89cc h1:nj9PtDUCJq5Z80OV07VQ44CymyKpsgKSTaR/O0G0IjE=
+github.com/DeMille/termsize v0.0.0-20150408082641-b7100f0f89cc/go.mod h1:KnN59nJpRMxbkAWvbt2WEPvXXEM/DXFs7Iq7gr/xnIs=
+github.com/TwiN/go-color v1.4.0 h1:fNbOwOrvup5oj934UragnW0B1WKaAkkB85q19Y7h4ng=
+github.com/TwiN/go-color v1.4.0/go.mod h1:0QTVEPlu+AoCyTrho7bXbVkrCkVpdQr7YF7PYWEtSxM=
