@@ -3,9 +3,7 @@ Columnize
 
 Easy column-formatted output for golang. Now with color.
 
-Forked from github.com/CiscoCloud/columnize which was forked from github.com/ryanuber/columnize
-
-[![Build Status](https://travis-ci.org/ryanuber/columnize.svg)](https://travis-ci.org/ryanuber/columnize)
+Forked from [github.com/CiscoCloud/columnize](//github.com/CiscoCloud/columnize) which was forked from [github.com/ryanuber/columnize](//github.com/ryanuber/columnize)
 
 Columnize is a really small Go package that makes building CLI's a little bit
 easier. In some CLI designs, you want to output a number similar items in a
@@ -69,8 +67,8 @@ config.BodyColors = nil
 * `Empty` is a string used to replace blank values found in output
 * `MaxWidth` is an int slice specifying the maximum width of each column.
 * `OutputWidth` is an int specifying the maximum width of an output line.
-* `HeaderColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See github.com/TwiN/go-color for more info.
-* `BodyColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See github.com/TwiN/go-color for more info.
+* `HeaderColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See [github.com/TwiN/go-color](//github.com/TwiN/go-color) for more info.
+* `BodyColors` is a pointer to a slice of color.In<Color>(s any) string {} functions. See [github.com/TwiN/go-color](//github.com/TwiN/go-color) for more info.
 
 If MaxWidth or OutputWidth is specified and output exceeds the configured width, Columnize breaks a column at a word boundary and continues it on the next line. See below for details.
 
@@ -89,7 +87,7 @@ Format(input []string, config *Config) string
 Colorizing Fields
 =================
 
-Header and body fields can have a specific cell color. See github.com/TwiN/go-color for more info.
+Header and body fields can have a specific cell color. See [github.com/TwiN/go-color](//github.com/TwiN/go-color) for more info.
 
 ```go
 config.HeaderColors = &columnize.ColorList{color.InRed, color.InGreen}
