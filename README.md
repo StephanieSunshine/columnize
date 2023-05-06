@@ -92,8 +92,8 @@ Colorizing Fields
 Header and body fields can have a specific cell color. See github.com/TwiN/go-color for more info.
 
 ```go
-config.HeaderColors = &ColorList{color.InRed, color.InGreen}
-config.BodyColors = &ColorList{color.InRed, color.InGreen}
+config.HeaderColors = &columnize.ColorList{color.InRed, color.InGreen}
+config.BodyColors = &columnize.ColorList{color.InRed, color.InGreen}
 
 ```
 
